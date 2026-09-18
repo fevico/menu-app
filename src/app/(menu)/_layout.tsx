@@ -1,3 +1,4 @@
+import AppHeader from "@/components/AppHeader";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Ionicons } from "@react-native-vector-icons/ionicons";
 import { Tabs } from "expo-router";
@@ -10,8 +11,9 @@ export default function TabLayout() {
         // Set your active tab accent color (e.g., matching a modern dating app theme)
         tabBarActiveTintColor: "#3b82f6",
         tabBarInactiveTintColor: "#94a3b8",
-        headerShown: false,
+        headerShown: true,
 
+        header: () => <AppHeader />,
         // 2. Attach your custom header globally for ALL student tabs
         tabBarStyle: {
           backgroundColor: "#000000",
