@@ -8,7 +8,7 @@ interface Props {}
 const AppHeader: FC<Props> = (props) => {
   return (
     <SafeAreaView>
-      <View className="p-4 border-b border-gray-300">
+      <View className="px-4 border-b">
         <View className="flex-row items-center justify-between">
           {/* left hand side */}
           <View className="flex-col items-start gap-1">
