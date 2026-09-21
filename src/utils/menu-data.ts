@@ -9,6 +9,8 @@ export interface MenuItem {
   prepTime: string;
   imageUrl: string;
   isSaved?: boolean;
+  ingredients: string[];
+  allergens: string[];
 }
 
 export const MENU_ITEMS: MenuItem[] = [
@@ -24,6 +26,15 @@ export const MENU_ITEMS: MenuItem[] = [
     imageUrl:
       "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80",
     isSaved: true,
+    ingredients: [
+      "Burrata",
+      "Heirloom Tomatoes",
+      "Basil Oil",
+      "Fleur de Sel",
+      "Balsamic Glaze",
+      "Pine Nuts",
+    ],
+    allergens: ["Dairy", "Tree Nuts"],
   },
   {
     id: "2",
@@ -37,6 +48,15 @@ export const MENU_ITEMS: MenuItem[] = [
     imageUrl:
       "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=800&q=80",
     isSaved: false,
+    ingredients: [
+      "Arborio Rice",
+      "Black Truffle",
+      "Parmigiano Reggiano",
+      "Egg",
+      "Breadcrumbs",
+      "Garlic Aioli",
+    ],
+    allergens: ["Gluten", "Dairy", "Eggs"],
   },
   {
     id: "3",
@@ -50,6 +70,15 @@ export const MENU_ITEMS: MenuItem[] = [
     imageUrl:
       "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80",
     isSaved: false,
+    ingredients: [
+      "A5 Wagyu Beef",
+      "Cultured Butter",
+      "Baby Carrots",
+      "Thyme",
+      "Bone Marrow",
+      "Red Wine Reduction",
+    ],
+    allergens: ["Dairy", "Sulphites"],
   },
   {
     id: "4",
@@ -63,6 +92,15 @@ export const MENU_ITEMS: MenuItem[] = [
     imageUrl:
       "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=800&q=80",
     isSaved: false,
+    ingredients: [
+      "King Salmon",
+      "Celery Root",
+      "Asparagus",
+      "Clarified Butter",
+      "Lemon Zest",
+      "Dill Oil",
+    ],
+    allergens: ["Fish", "Dairy", "Celery"],
   },
   {
     id: "5",
@@ -76,6 +114,15 @@ export const MENU_ITEMS: MenuItem[] = [
     imageUrl:
       "https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=800&q=80",
     isSaved: false,
+    ingredients: [
+      "Potato Gnocchi",
+      "Porcini",
+      "Shiitake",
+      "Chanterelle",
+      "Parmigiano",
+      "White Truffle Cream",
+    ],
+    allergens: ["Gluten", "Dairy", "Eggs"],
   },
   {
     id: "6",
@@ -89,6 +136,15 @@ export const MENU_ITEMS: MenuItem[] = [
     imageUrl:
       "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=80",
     isSaved: false,
+    ingredients: [
+      "70% Dark Chocolate",
+      "Cacao Butter",
+      "Pasture Eggs",
+      "Cane Sugar",
+      "Vanilla Bean",
+      "Heavy Cream",
+    ],
+    allergens: ["Gluten", "Dairy", "Eggs", "Soy"],
   },
   {
     id: "7",
@@ -102,6 +158,15 @@ export const MENU_ITEMS: MenuItem[] = [
     imageUrl:
       "https://images.unsplash.com/photo-1560008581-09826d1de69e?auto=format&fit=crop&w=800&q=80",
     isSaved: false,
+    ingredients: [
+      "Bronte Pistachios",
+      "Whole Milk",
+      "Heavy Cream",
+      "Cane Sugar",
+      "Wildflower Honey",
+      "Wafer Crisp",
+    ],
+    allergens: ["Dairy", "Tree Nuts", "Gluten"],
   },
   {
     id: "8",
@@ -115,6 +180,14 @@ export const MENU_ITEMS: MenuItem[] = [
     imageUrl:
       "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=800&q=80",
     isSaved: false,
+    ingredients: [
+      "Rye Bourbon",
+      "Organic Maple Syrup",
+      "Angostura Bitters",
+      "Orange Peel",
+      "Hickory Smoke",
+    ],
+    allergens: [],
   },
   {
     id: "9",
@@ -128,6 +201,14 @@ export const MENU_ITEMS: MenuItem[] = [
     imageUrl:
       "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80",
     isSaved: false,
+    ingredients: [
+      "Prosecco",
+      "Hibiscus Cordial",
+      "Club Soda",
+      "Fresh Mint",
+      "Lime Juice",
+    ],
+    allergens: ["Sulphites"],
   },
   {
     id: "10",
@@ -141,5 +222,12 @@ export const MENU_ITEMS: MenuItem[] = [
     imageUrl:
       "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=800&q=80",
     isSaved: false,
+    ingredients: [
+      "Single-Origin Espresso",
+      "Mediterranean Tonic Water",
+      "Rosemary Sprig",
+      "Grapefruit Twist",
+    ],
+    allergens: [],
   },
 ];

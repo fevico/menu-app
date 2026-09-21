@@ -2,6 +2,7 @@ import Category from "@/components/menu/category";
 import HeroBanner from "@/components/menu/hero-banner";
 import MenuCard from "@/components/menu/menu-card";
 import { MENU_ITEMS, MenuItem } from "@/utils/menu-data";
+import { useRouter } from "expo-router";
 import { FC, useState } from "react";
 import { FlatList, Text, View } from "react-native";
 
@@ -9,9 +10,10 @@ interface Props {}
 const CATEGORIES = ["All", "Starters", "Mains", "Desserts", "Drinks"];
 
 const Menu: FC<Props> = (props) => {
-  const imageSource = require("../../../assets/images/hero-banner.jpg"); // Default local image
+  const imageSource = require("../../../assets/images/hero-banner.jpg");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [dishes, setDishes] = useState<MenuItem[]>(MENU_ITEMS);
+  const router = useRouter()
 
   const filteredDishes =
     selectedCategory === "All"
@@ -69,7 +71,9 @@ const Menu: FC<Props> = (props) => {
           <MenuCard
             item={item}
             onToggleSave={handleToggleSave}
-            onPress={() => console.log("Selected:", item.name)}
+            onPress={() =>{
+              router.push({pathname: "/dish/[id]", params: {id: item.id}});
+            }}
           />
         )}
       />
