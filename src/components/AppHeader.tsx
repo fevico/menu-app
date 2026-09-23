@@ -21,7 +21,6 @@ const AppHeader: FC<Props> = (props) => {
           {/* right hand side */}
           <View className="flex-row items-start gap-1">
             <Ionicons name="search-outline" color="#fff" size={30} />
-            <FontAwesome name="user-circle" color="#fff" size={30} />
           </View>
         </View>
       </View>
