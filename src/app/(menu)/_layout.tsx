@@ -3,8 +3,10 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Ionicons } from "@react-native-vector-icons/ionicons";
 import { Tabs } from "expo-router";
 import { Platform } from "react-native";
+import { useWishlistStore } from "../../../store/store";
 
 export default function TabLayout() {
+  const savedCount = useWishlistStore((state) => state.wishlist.length);
   return (
     <Tabs
       screenOptions={{
@@ -15,6 +17,7 @@ export default function TabLayout() {
 
         header: () => <AppHeader />,
         // 2. Attach your custom header globally for ALL student tabs
+        // tabBarBadge: savedCount > 0 ? savedCount : undefined,
         tabBarStyle: {
           backgroundColor: "#000000",
           borderTopWidth: 1,
@@ -41,6 +44,7 @@ export default function TabLayout() {
         name="saved"
         options={{
           title: "Saved",
+          tabBarBadge: savedCount > 0 ? savedCount : undefined,
           tabBarIcon: ({ color, focused }) => (
             <Ionicons name="heart-outline" size={24} color={color} />
           ),

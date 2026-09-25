@@ -5,6 +5,7 @@ import { MENU_ITEMS, MenuItem } from "@/utils/menu-data";
 import { useRouter } from "expo-router";
 import { FC, useState } from "react";
 import { FlatList, Text, View } from "react-native";
+import { useWishlistStore } from "../../../store/store";
 
 interface Props {}
 const CATEGORIES = ["All", "Starters", "Mains", "Desserts", "Drinks"];
@@ -13,20 +14,23 @@ const Menu: FC<Props> = (props) => {
   const imageSource = require("../../../assets/images/hero-banner.jpg");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [dishes, setDishes] = useState<MenuItem[]>(MENU_ITEMS);
-  const router = useRouter()
+  const router = useRouter();
+  
+  // const toggleWishlist = useWishlistStore((state) => state.toggleWishlist);
 
   const filteredDishes =
     selectedCategory === "All"
       ? dishes
       : dishes.filter((d) => d.category === selectedCategory);
 
-  const handleToggleSave = (id: string) => {
-    setDishes((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, isSaved: !item.isSaved } : item,
-      ),
-    );
-  };
+  // const handleToggleSave = (item: MenuItem) => {
+  //   setDishes((prev) =>
+  //     prev.map((item) =>
+  //       item.id === item.id ? { ...item, isSaved: !item.isSaved } : item,
+  //     ),
+  //   );
+  //   toggleWishlist(item);
+  // };
 
   return (
     <View className="flex-1 bg-[#09090B]">
@@ -70,9 +74,9 @@ const Menu: FC<Props> = (props) => {
         renderItem={({ item }) => (
           <MenuCard
             item={item}
-            onToggleSave={handleToggleSave}
-            onPress={() =>{
-              router.push({pathname: "/dish/[id]", params: {id: item.id}});
+            // onToggleSave={handleToggleSave(item)}
+            onPress={() => {
+              router.push({ pathname: "/dish/[id]", params: { id: item.id } });
             }}
           />
         )}

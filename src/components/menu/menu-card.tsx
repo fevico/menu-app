@@ -1,7 +1,8 @@
-import { FC } from "react";
-import { Text, View, Pressable } from "react-native";
-import { Image } from "expo-image";
 import { Ionicons } from "@react-native-vector-icons/ionicons";
+import { Image } from "expo-image";
+import { FC } from "react";
+import { Pressable, Text, View } from "react-native";
+import { useWishlistStore } from "../../../store/store";
 
 export interface MenuItem {
   id: string;
@@ -19,10 +20,19 @@ export interface MenuItem {
 interface MenuCardProps {
   item: MenuItem;
   onPress?: () => void;
-  onToggleSave?: (id: string) => void;
+  onToggleSave?: (item: MenuItem) => void;
 }
 
-const MenuCard: FC<MenuCardProps> = ({ item, onPress, onToggleSave }) => {
+const MenuCard: FC<MenuCardProps> = ({ item, onPress }) => {
+  const toggleWishlist = useWishlistStore((state) => state.toggleWishlist);
+  const isSaved = useWishlistStore((state) =>
+    state.wishlist.some((dish) => dish.id === item.id),
+  );
+
+  const handleToggleSave = () => {
+    toggleWishlist(item);
+  };
+
   return (
     <Pressable
       onPress={onPress}
@@ -38,13 +48,13 @@ const MenuCard: FC<MenuCardProps> = ({ item, onPress, onToggleSave }) => {
           transition={200}
         />
         <Pressable
-          onPress={() => onToggleSave?.(item.id)}
+          onPress={handleToggleSave}
           className="absolute top-2 right-2 w-8 h-8 rounded-full bg-black/40 items-center justify-center backdrop-blur-md"
         >
           <Ionicons
-            name={item.isSaved ? "heart" : "heart-outline"}
+            name={isSaved ? "heart" : "heart-outline"}
             size={16}
-            color={item.isSaved ? "#EF4444" : "#FFFFFF"}
+            color={isSaved ? "#EF4444" : "#FFFFFF"}
           />
         </Pressable>
       </View>
@@ -83,7 +93,9 @@ const MenuCard: FC<MenuCardProps> = ({ item, onPress, onToggleSave }) => {
 
         <View className="flex-row items-center">
           <Ionicons name="time-outline" size={11} color="#9CA3AF" />
-          <Text className="text-gray-400 text-[11px] ml-1">{item.prepTime}</Text>
+          <Text className="text-gray-400 text-[11px] ml-1">
+            {item.prepTime}
+          </Text>
         </View>
       </View>
     </Pressable>
