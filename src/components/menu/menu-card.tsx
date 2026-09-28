@@ -24,9 +24,9 @@ interface MenuCardProps {
 }
 
 const MenuCard: FC<MenuCardProps> = ({ item, onPress }) => {
-  const toggleWishlist = useWishlistStore((state) => state.toggleWishlist);
-  const isSaved = useWishlistStore((state) =>
-    state.wishlist.some((dish) => dish.id === item.id),
+  const toggleWishlist = useWishlistStore((state: any) => state.toggleWishlist);
+  const isSaved = useWishlistStore((state: any) =>
+    state.wishlist.some((dish: MenuItem) => dish.id === item.id),
   );
 
   const handleToggleSave = () => {

@@ -10,11 +10,11 @@ interface WishlistState {
 export const useWishlistStore = create((set) => ({
   wishlist: [],
   toggleWishlist: (item: MenuItem) =>
-    set((state) => {
-      const exists = state.wishlist.some((dish) => dish.id === item.id);
+    set((state: any) => {
+      const exists = state.wishlist.some((dish: MenuItem) => dish.id === item.id);
       return {
         wishlist: exists
-          ? state.wishlist.filter((dish) => dish.id !== item.id) // Remove if already saved
+          ? state.wishlist.filter((dish: MenuItem) => dish.id !== item.id) // Remove if already saved
           : [...state.wishlist, item], // Add full item if not saved
       };
     }),

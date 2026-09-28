@@ -6,7 +6,7 @@ import { Platform } from "react-native";
 import { useWishlistStore } from "../../../store/store";
 
 export default function TabLayout() {
-  const savedCount = useWishlistStore((state) => state.wishlist.length);
+  const savedCount = useWishlistStore((state: any) => state.wishlist.length);
   return (
     <Tabs
       screenOptions={{
@@ -17,7 +17,6 @@ export default function TabLayout() {
 
         header: () => <AppHeader />,
         // 2. Attach your custom header globally for ALL student tabs
-        // tabBarBadge: savedCount > 0 ? savedCount : undefined,
         tabBarStyle: {
           backgroundColor: "#000000",
           borderTopWidth: 1,

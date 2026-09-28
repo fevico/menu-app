@@ -8,11 +8,11 @@ import { Ionicons } from "@expo/vector-icons";
 interface Props {}
 
 const Saved: FC<Props> = (props) => {
-  const wishlist = useWishlistStore((state) => state.wishlist);
+  const wishlist = useWishlistStore((state: any) => state.wishlist);
   console.log(wishlist);
 
-   const toggleWishlist = useWishlistStore((state) => state.toggleWishlist);
-   
+   const toggleWishlist = useWishlistStore((state: any) => state.toggleWishlist);
+
 //   const isSaved = useWishlistStore((state) =>
 //     state.wishlist.some((dish) => dish.id === item.id),
 //   );
@@ -21,7 +21,7 @@ const Saved: FC<Props> = (props) => {
     toggleWishlist(item);
   };
 
-  const totalValue = wishlist.reduce((acc, item) => acc + item.price, 0);
+//   const totalValue = wishlist.reduce((acc, item) => acc + item.price, 0);
   //   const avgRating =
   //     wishlist.length > 0
   //       ? (
