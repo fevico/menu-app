@@ -1,37 +1,19 @@
 import { MenuItem } from "@/utils/menu-data";
 import { Image } from "expo-image";
 import { FC } from "react";
-import { Pressable, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { useWishlistStore } from "../../../store/store";
-import { Ionicons } from "@expo/vector-icons";
 
 interface Props {}
 
 const Saved: FC<Props> = (props) => {
   const wishlist = useWishlistStore((state: any) => state.wishlist);
-  console.log(wishlist);
 
    const toggleWishlist = useWishlistStore((state: any) => state.toggleWishlist);
-
-//   const isSaved = useWishlistStore((state) =>
-//     state.wishlist.some((dish) => dish.id === item.id),
-//   );
 
   const handleToggleSave = (item: MenuItem) => {
     toggleWishlist(item);
   };
-
-//   const totalValue = wishlist.reduce((acc, item) => acc + item.price, 0);
-  //   const avgRating =
-  //     wishlist.length > 0
-  //       ? (
-  //           wishlist.reduce((acc, item) => acc + item.rating, 0) / wishlist.length
-  //         ).toFixed(1)
-  //       : "0.0";
-  //   const totalCalories = wishlist.reduce((acc, item) => {
-  //     const cal = parseInt(item.calories) || 0;
-  //     return acc + cal;
-  //   }, 0);
 
   return (
     <View className="px-4">
