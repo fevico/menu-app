@@ -1,25 +1,24 @@
 {
   "expo": {
-    "name": "menu-app",
-    "slug": "menu-app",
+    "name": "Fevico Menu",
+    "slug": "fevico-menu",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "menuapp",
+    "scheme": "fevicomenu",
     "userInterfaceStyle": "dark",
     "backgroundColor": "#121212",
     "ios": {
       "icon": "./assets/expo.icon"
     },
-    "android": {
+    "android": { 
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
-        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+        "backgroundColor": "#121212",
+        "foregroundImage": "./assets/images/menu-icon.png",
+        "monochromeImage": "./assets/images/menu-icon.png"
       },
       "predictiveBackGestureEnabled": false,
-      "package": "com.fevico.menuapp"
+      "package": "com.fevico.fevicomenu"
     },
     "web": {
       "output": "static",
@@ -31,7 +30,7 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#208AEF",
+          "backgroundColor": "#121212",
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 76
         }
@@ -49,7 +48,7 @@
     "extra": {
       "router": {},
       "eas": {
-        "projectId": "ddb6c167-f028-4883-b131-6c26bc9916cf"
+        "projectId": "b7b8ffb4-568a-44b9-b03a-c9c6d4f2f66a"
       }
     }
   }
