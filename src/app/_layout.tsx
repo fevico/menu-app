@@ -9,7 +9,7 @@ SplashScreen.preventAutoHideAsync();
 export default function TabLayout() {
   
   return (
-    <ThemeProvider value={DarkTheme}>
+    <ThemeProvider value={DefaultTheme}>
       <View className="flex-1">
         <AnimatedSplashOverlay />
         <Stack screenOptions={{ headerShown: false }}>

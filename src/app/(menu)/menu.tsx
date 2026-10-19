@@ -23,7 +23,7 @@ const Menu: FC<Props> = (props) => {
       : dishes.filter((d) => d.category === selectedCategory);
 
   return (
-    <View className="flex-1 bg-[#09090B]">
+    <View className="flex-1 ">
       <FlatList
         data={filteredDishes}
         keyExtractor={(item) => item.id}

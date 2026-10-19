@@ -1,64 +1,140 @@
-import { ThemedView } from "@/components/themed-view";
-import { BottomTabInset, MaxContentWidth, Spacing } from "@/constants/theme";
-import { useRouter } from "expo-router";
-import { Button, StyleSheet, Text, View } from "react-native";
+import React, { useEffect } from "react";
+import { StyleSheet, Text, View, StatusBar } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useRouter } from "expo-router";
 
-export default function HomeScreen() {
+export default function SplashScreen() {
   const router = useRouter();
-  const handleExploreMenuPress = () => {
-    router.push("/(menu)/menu");
-  };
+
+  // If you want it to behave like a true splash screen and auto-navigate after 2.5 seconds:
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      router.replace("/auth/signin");
+    }, 2500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <ThemedView style={styles.container}>
+    <View style={styles.container}>
+      {/* Set status bar icons to light so they are visible over the orange background */}
+      <StatusBar barStyle="light-content" backgroundColor="#C45A34" />
+
+      {/* Optional decorative background circle arcs */}
+      <View style={styles.topRightArc} />
+      <View style={styles.bottomLeftArc} />
+
       <SafeAreaView style={styles.safeArea}>
-        <View className="flex-1 items-center justify-center gap-4">
-          <Text className="text-2xl font-bold text-center text-white">
-            Welcome to the Restaurant App
+        {/* Top spacer to balance space-between alignment */}
+        <View style={styles.spacer} />
+
+        {/* Center Content: Badge, Title & Tagline */}
+        <View style={styles.centerSection}>
+          {/* Logo Badge (Organic Egg/Oval Shape) */}
+          <View style={styles.logoBadge}>
+            <Text style={styles.logoLetter}>E</Text>
+          </View>
+
+          {/* Main Title */}
+          <Text style={styles.brandTitle}>Ember & Oak</Text>
+
+          {/* Subtitle */}
+          <Text style={styles.tagline}>
+            Seasonal food, delivered beautifully.
           </Text>
-          <Text className="text-center text-white italic">
-            Explore our menu and add your favorite dishes to your wishlist.
-          </Text>
-          <Button title="Explore menu" onPress={handleExploreMenuPress} />
+        </View>
+
+        {/* Bottom Footer Text */}
+        <View style={styles.footerSection}>
+          <Text style={styles.footerText}>GOOD FOOD · GOOD MOOD</Text>
         </View>
       </SafeAreaView>
-    </ThemedView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    flexDirection: "row",
+    backgroundColor: "#C45A34", // Terracotta orange background
+    position: "relative",
+    overflow: "hidden",
   },
   safeArea: {
     flex: 1,
-    paddingHorizontal: Spacing.four,
+    justifyContent: "space-between", // Pushes center to middle and footer to bottom
     alignItems: "center",
-    gap: Spacing.three,
-    paddingBottom: BottomTabInset + Spacing.three,
-    maxWidth: MaxContentWidth,
+    paddingHorizontal: 24,
   },
-  heroSection: {
+  spacer: {
+    height: 40,
+  },
+  centerSection: {
     alignItems: "center",
     justifyContent: "center",
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    gap: Spacing.four,
+    width: "100%",
   },
-  title: {
+  logoBadge: {
+    width: 84,
+    height: 98,
+    borderWidth: 1,
+    borderColor: "rgba(255, 255, 255, 0.4)", // Thin semi-transparent ring
+    borderRadius: 44, // Gives it an oval / egg shape
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 28,
+  },
+  logoLetter: {
+    color: "#FFFFFF",
+    fontSize: 42,
+    fontStyle: "italic",
+    fontFamily: "serif", // Uses system serif font (or your custom loaded serif)
+    fontWeight: "600",
+  },
+  brandTitle: {
+    color: "#FFFFFF",
+    fontSize: 34,
+    fontWeight: "700",
+    fontFamily: "serif",
+    textAlign: "center",
+    marginBottom: 10,
+    letterSpacing: 0.5,
+  },
+  tagline: {
+    color: "rgba(255, 255, 255, 0.85)",
+    fontSize: 15,
+    textAlign: "center",
+    fontWeight: "400",
+  },
+  footerSection: {
+    paddingBottom: 24,
+  },
+  footerText: {
+    color: "rgba(255, 255, 255, 0.65)",
+    fontSize: 11,
+    letterSpacing: 3, // Wide character spacing matching the design
+    fontWeight: "600",
     textAlign: "center",
   },
-  code: {
-    textTransform: "uppercase",
+  // Subtle decorative background circles
+  topRightArc: {
+    position: "absolute",
+    top: -120,
+    right: -120,
+    width: 320,
+    height: 320,
+    borderRadius: 160,
+    borderWidth: 1,
+    borderColor: "rgba(255, 255, 255, 0.08)",
   },
-  stepContainer: {
-    gap: Spacing.three,
-    alignSelf: "stretch",
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.four,
-    borderRadius: Spacing.four,
+  bottomLeftArc: {
+    position: "absolute",
+    bottom: -100,
+    left: -100,
+    width: 280,
+    height: 280,
+    borderRadius: 140,
+    borderWidth: 1,
+    borderColor: "rgba(255, 255, 255, 0.08)",
   },
 });
