@@ -21,21 +21,20 @@ export interface BannerSlide {
   subtitle: string;
   imageUri: string;
 }
-
 const DEFAULT_SLIDES: BannerSlide[] = [
   {
     id: "1",
-    tag: "NEW SEASON",
-    title: "Spring has arrived",
-    subtitle: "Discover bright, market-led dishes",
+    tag: "WEEKEND SPECIAL",
+    title: "A feast made for sharing",
+    subtitle: "Save 20% on orders over $60",
     imageUri:
       "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=80",
   },
   {
     id: "2",
-    tag: "CHEF'S SPECIAL",
-    title: "Wood-fired Prime Cuts",
-    subtitle: "Aged 35 days, finished over oak ember",
+    tag: "NEW SEASON",
+    title: "Spring has arrived",
+    subtitle: "Discover bright, market-led dishes",
     imageUri:
       "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=80",
   },
