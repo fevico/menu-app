@@ -11,14 +11,15 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         // Set your active tab accent color (e.g., matching a modern dating app theme)
-        tabBarActiveTintColor: "#3b82f6",
+        tabBarActiveTintColor: "#C45A34",
         tabBarInactiveTintColor: "#94a3b8",
         headerShown: true,
+        sceneStyle: { backgroundColor: "#FBF9F5" },
 
         header: () => <AppHeader />,
         // 2. Attach your custom header globally for ALL student tabs
         tabBarStyle: {
-          backgroundColor: "#000000",
+          backgroundColor: "#ffffff",
           borderTopWidth: 1,
           borderTopColor: "#e2e8f0",
           height: Platform.OS === "android" ? 95 : 85,

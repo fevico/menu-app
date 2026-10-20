@@ -29,7 +29,7 @@ const PREFERENCES: PreferenceItem[] = [
 
 const Profile: FC = () => {
   return (
-    <SafeAreaView className="flex-1 bg-[#09090B]">
+    <SafeAreaView className="flex-1">
       <ScrollView
         className="flex-1 px-5 pt-4"
         showsVerticalScrollIndicator={false}

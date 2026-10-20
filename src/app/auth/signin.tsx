@@ -77,6 +77,7 @@ const SignIn: FC<Props> = (props) => {
                 </View>
               </SafeAreaView>
             </View>
+            
           </ImageBackground>
         </View>
 
@@ -91,7 +92,7 @@ const SignIn: FC<Props> = (props) => {
           <View style={styles.inputGroup}>
             <Text style={styles.inputLabel}>Email address</Text>
             <FormInput
-              email={email}
+              value={email}
               setInput={setEmail}
               placeholder="alex@example.com"
               keyboardType="email-address"
@@ -102,7 +103,7 @@ const SignIn: FC<Props> = (props) => {
           <View style={styles.inputGroup}>
             <Text style={styles.inputLabel}>Password</Text>
             <FormInput
-              email={password}
+              value={password}
               setInput={setPassword}
               placeholder="At least 8 characters"
               keyboardType="default"

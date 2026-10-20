@@ -2,13 +2,13 @@ import { FC } from "react";
 import { StyleSheet, TextInput } from "react-native";
 
 interface Props {
-    email: string;
+    value: string;
     setInput: (input: string) => void;
     placeholder?: string;
     keyboardType?: "default" | "email-address" | "numeric" | "phone-pad";
 }
 
-const FormInput: FC<Props> = ({ email, setInput, placeholder, keyboardType }) => {
+const FormInput: FC<Props> = ({ value, setInput, placeholder, keyboardType }) => {
   return (
     <TextInput
       style={styles.textInput}
@@ -16,7 +16,7 @@ const FormInput: FC<Props> = ({ email, setInput, placeholder, keyboardType }) =>
       placeholderTextColor="#A0A0A0"
       keyboardType={keyboardType}
       autoCapitalize="none"
-      value={email}
+      value={value}
       onChangeText={setInput}
     />
   );

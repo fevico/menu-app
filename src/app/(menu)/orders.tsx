@@ -26,7 +26,7 @@ const DUMMY_ORDERS: Order[] = [
 
 const Orders: FC<Props> = (props) => {
   return (
-    <SafeAreaView className="flex-1 bg-[#09090B]">
+    <SafeAreaView className="flex-1">
       <ScrollView
         className="flex-1 px-4 pt-4"
         showsVerticalScrollIndicator={false}

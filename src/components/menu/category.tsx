@@ -32,12 +32,12 @@ const Category: FC<Props> = ({
             className={` mr-3 rounded-full px-5 py-2.5 items-center justify-center ${
               isSelected
                 ? "bg-[#D97706]" // Warm amber/orange matching Figma active pill
-                : "bg-[#18181B] border border-[#27272A]"
+                : "bg-[#ffffff] border border-[#E5E7EB]" // Subtle gray border for inactive pill
             }`}
           >
             <Text
               className={`text-sm font-medium ${
-                isSelected ? "text-white font-semibold" : "text-gray-400"
+                isSelected ? "text-white font-semibold" : "text-gray-500"
               }`}
             >
               {cat}
