@@ -9,6 +9,7 @@ export interface MenuItem {
   prepTime: string;
   imageUrl: string;
   isSaved?: boolean;
+  tag?: string; // "CHEF'S PICK", "POPULAR", "SIGNATURE", "FRESH CATCH", etc.
   ingredients: string[];
   allergens: string[];
 }
@@ -26,6 +27,7 @@ export const MENU_ITEMS: MenuItem[] = [
     imageUrl:
       "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80",
     isSaved: true,
+    tag: "CHEF'S PICK",
     ingredients: [
       "Burrata",
       "Heirloom Tomatoes",
@@ -42,12 +44,13 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 12.00,
     category: "Starters",
     description: "Black truffle risotto balls, aged parmigiano, garlic aioli.",
-    rating: 4.6,
+    rating: 4.7,
     calories: "410 kcal",
     prepTime: "12m",
     imageUrl:
       "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=800&q=80",
     isSaved: false,
+    tag: "POPULAR",
     ingredients: [
       "Arborio Rice",
       "Black Truffle",
@@ -70,6 +73,7 @@ export const MENU_ITEMS: MenuItem[] = [
     imageUrl:
       "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80",
     isSaved: false,
+    tag: "SIGNATURE",
     ingredients: [
       "A5 Wagyu Beef",
       "Cultured Butter",
@@ -92,6 +96,7 @@ export const MENU_ITEMS: MenuItem[] = [
     imageUrl:
       "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=800&q=80",
     isSaved: false,
+    tag: "FRESH CATCH",
     ingredients: [
       "King Salmon",
       "Celery Root",
@@ -114,6 +119,7 @@ export const MENU_ITEMS: MenuItem[] = [
     imageUrl:
       "https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=800&q=80",
     isSaved: false,
+    tag: "CHEF'S PICK",
     ingredients: [
       "Potato Gnocchi",
       "Porcini",
@@ -136,6 +142,7 @@ export const MENU_ITEMS: MenuItem[] = [
     imageUrl:
       "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=80",
     isSaved: false,
+    tag: "HOUSE FAVORITE",
     ingredients: [
       "70% Dark Chocolate",
       "Cacao Butter",
@@ -158,6 +165,7 @@ export const MENU_ITEMS: MenuItem[] = [
     imageUrl:
       "https://images.unsplash.com/photo-1560008581-09826d1de69e?auto=format&fit=crop&w=800&q=80",
     isSaved: false,
+    tag: "ARTISAN",
     ingredients: [
       "Bronte Pistachios",
       "Whole Milk",
@@ -180,6 +188,7 @@ export const MENU_ITEMS: MenuItem[] = [
     imageUrl:
       "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=800&q=80",
     isSaved: false,
+    tag: "SIGNATURE",
     ingredients: [
       "Rye Bourbon",
       "Organic Maple Syrup",
@@ -201,6 +210,7 @@ export const MENU_ITEMS: MenuItem[] = [
     imageUrl:
       "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80",
     isSaved: false,
+    tag: "REFRESHING",
     ingredients: [
       "Prosecco",
       "Hibiscus Cordial",
@@ -222,6 +232,7 @@ export const MENU_ITEMS: MenuItem[] = [
     imageUrl:
       "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=800&q=80",
     isSaved: false,
+    tag: "SINGLE ORIGIN",
     ingredients: [
       "Single-Origin Espresso",
       "Mediterranean Tonic Water",

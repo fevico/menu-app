@@ -1,21 +1,21 @@
 {
   "expo": {
-    "name": "Fevico Menu",
+    "name": "Ember & Oak",
     "slug": "fevico-menu",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/app-icon.png",
     "scheme": "fevicomenu",
     "userInterfaceStyle": "light",
     "backgroundColor": "#ffffff",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/images/app-icon.png"
     },
     "android": { 
       "adaptiveIcon": {
         "backgroundColor": "#ffffff",
-        "foregroundImage": "./assets/images/menu-icon.png",
-        "monochromeImage": "./assets/images/menu-icon.png"
+        "foregroundImage": "./assets/images/app-icon.png",
+        "monochromeImage": "./assets/images/app-icon.png"
       },
       "predictiveBackGestureEnabled": false,
       "package": "com.fevico.fevicomenu"
@@ -31,7 +31,7 @@
         "expo-splash-screen",
         {
           "backgroundColor": "#121212",
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/app-icon.png",
           "imageWidth": 76
         }
       ],

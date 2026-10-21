@@ -1,7 +1,6 @@
 import React, { FC, useState } from "react";
 import { FlatList, Text, View } from "react-native";
 import { useRouter } from "expo-router";
-
 import FormInput from "@/components/FormInput";
 import Category from "@/components/menu/category";
 import HeroBannerSlider from "@/components/menu/hero-banner";
@@ -35,10 +34,10 @@ const Menu: FC<Props> = () => {
         columnWrapperStyle={{
           justifyContent: "space-between",
           paddingHorizontal: 16,
-          marginBottom: 16,
+          marginBottom: 16
         }}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 120 }}
+        contentContainerStyle={{ paddingBottom: 24 }}
         ListHeaderComponent={
           <View>
             {/* 1. GREETINGS & SEARCH */}
