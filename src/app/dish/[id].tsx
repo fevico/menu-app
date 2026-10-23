@@ -1,212 +1,438 @@
-import { MENU_ITEMS } from "@/utils/menu-data";
+// import { MENU_ITEMS, MenuItem } from "@/utils/menu-data";
+// import { AntDesign, Feather, Ionicons } from "@expo/vector-icons";
+// import { Image } from "expo-image";
+// import { useLocalSearchParams, useRouter } from "expo-router";
+// import { FC, useState } from "react";
+// import { Pressable, ScrollView, Text, View } from "react-native";
+// import { useSafeAreaInsets } from "react-native-safe-area-context";
+// import { useWishlistStore } from "../../../store/store";
+
+// const MenuDetails: FC = () => {
+//   const { id } = useLocalSearchParams<{ id: string }>();
+//   const router = useRouter();
+//   const insets = useSafeAreaInsets();
+//   const [quantity, setQuantity] = useState(1);
+
+//   const toggleWishlist = useWishlistStore((state: any) => state.toggleWishlist);
+//   const dish = MENU_ITEMS.find((m) => m.id === id);
+//   const isSaved = useWishlistStore((state: any) =>
+//     state.wishlist.some((item: MenuItem) => item.id === dish?.id),
+//   );
+
+//   const handleDecrease = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+//   const handleIncrease = () => setQuantity((prev) => prev + 1);
+
+//   const totalPrice = ((dish?.price ?? 0) * quantity).toFixed(2);
+
+//   if (!dish) {
+//     return (
+//       <View className="flex-1 bg-[#FBF9F5] items-center justify-center">
+//         <Text className="text-gray-500 font-serif">Dish not found</Text>
+//       </View>
+//     );
+//   }
+
+//   return (
+//     <View className="flex-1 bg-[#2C2623]/40 justify-end">
+//       {/* Main Modal Card Container */}
+//       <View
+//         style={{ paddingBottom: Math.max(insets.bottom, 20) }}
+//         className="w-full bg-[#FCFBF8] rounded-t-[36px] overflow-hidden"
+//       >
+//         <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
+//           {/* ================= 1. DISH IMAGE & FLOATING BUTTONS ================= */}
+//           <View className="relative w-full h-[320px] bg-[#EFECE6]">
+//             <Image
+//               source={{ uri: dish.imageUrl }}
+//               className="w-full h-full"
+//               contentFit="cover"
+//               transition={200}
+//               style={{ width: "100%", height: "100%" }}
+//             />
+
+//             {/* Floating Top Bar on image */}
+//             <View
+//               style={{ paddingTop: 16 }}
+//               className="absolute top-0 left-0 right-0 px-4 flex-row justify-between items-center z-10"
+//             >
+//               {/* Back Button */}
+//               <Pressable
+//                 onPress={() => router.back()}
+//                 hitSlop={8}
+//                 className="w-9 h-9 rounded-full bg-white items-center justify-center shadow-sm active:opacity-80"
+//               >
+//                 <AntDesign name="left" size={15} color="#1E1E1E" />
+//               </Pressable>
+
+//               {/* Wishlist Button */}
+//               <Pressable
+//                 onPress={() => toggleWishlist(dish)}
+//                 hitSlop={8}
+//                 className="w-9 h-9 rounded-full bg-white items-center justify-center shadow-sm active:opacity-80"
+//               >
+//                 <Ionicons
+//                   name={isSaved ? "heart" : "heart-outline"}
+//                   size={17}
+//                   color={isSaved ? "#C45A34" : "#1E1E1E"}
+//                 />
+//               </Pressable>
+//             </View>
+//           </View>
+
+//           {/* ================= 2. DETAILS BODY ================= */}
+//           <View className="px-6 pt-5 pb-4">
+//             {/* Tag (e.g. Chef's pick) */}
+//             {dish.tag && (
+//               <Text className="text-[#C45A34] text-[12px] font-medium mb-1">
+//                 {dish.tag.charAt(0).toUpperCase() +
+//                   dish.tag.slice(1).toLowerCase()}
+//               </Text>
+//             )}
+
+//             {/* Title & Price Row */}
+//             <View className="flex-row items-baseline justify-between mb-5">
+//               <Text
+//                 className="text-[#1E1E1E] text-2xl font-bold flex-1 mr-3"
+//                 style={{ fontFamily: "serif" }}
+//               >
+//                 {dish.name}
+//               </Text>
+//               <Text className="text-[#C45A34] text-xl font-bold">
+//                 ${dish.price.toFixed(2)}
+//               </Text>
+//             </View>
+
+//             {/* Stats Card (Rating / Ready in / Calories) */}
+//             <View className="w-full bg-[#FFFFFF] border border-[#EFECE6] rounded-2xl py-3 px-4 flex-row items-center justify-between mb-5 shadow-sm">
+//               {/* Rating */}
+//               <View className="flex-1 items-center">
+//                 <View className="flex-row items-center gap-1 mb-1">
+//                   <AntDesign name="star" color="#1E1E1E" size={12} />
+//                   <Text className="text-[#1E1E1E] font-bold text-xs">
+//                     {dish.rating.toFixed(1)}
+//                   </Text>
+//                 </View>
+//                 <Text className="text-gray-400 text-[9px] uppercase font-semibold tracking-wider">
+//                   RATING
+//                 </Text>
+//               </View>
+
+//               <View className="w-[1px] h-6 bg-[#EFECE6]" />
+
+//               {/* Ready In */}
+//               <View className="flex-1 items-center">
+//                 <View className="flex-row items-center gap-1 mb-1">
+//                   <Feather name="clock" color="#1E1E1E" size={12} />
+//                   <Text className="text-[#1E1E1E] font-bold text-xs">
+//                     {dish.prepTime}
+//                   </Text>
+//                 </View>
+//                 <Text className="text-gray-400 text-[9px] uppercase font-semibold tracking-wider">
+//                   READY IN
+//                 </Text>
+//               </View>
+
+//               <View className="w-[1px] h-6 bg-[#EFECE6]" />
+
+//               {/* Calories */}
+//               <View className="flex-1 items-center">
+//                 <Text className="text-[#1E1E1E] font-bold text-xs mb-1">
+//                   {dish.calories.replace(/[^0-9]/g, "")}
+//                 </Text>
+//                 <Text className="text-gray-400 text-[9px] uppercase font-semibold tracking-wider">
+//                   CALORIES
+//                 </Text>
+//               </View>
+//             </View>
+
+//             {/* Italic Description */}
+//             <Text className="text-gray-500 italic text-[13px] leading-5 mb-6">
+//               {dish.description} Prepared to order with vibrant seasonal produce
+//               and our kitchen's signature dressing.
+//             </Text>
+
+//             {/* ================= WHAT'S INSIDE ================= */}
+//             <View className="mb-5">
+//               <Text className="text-[10px] font-bold text-gray-500 tracking-widest uppercase mb-2.5">
+//                 WHAT'S INSIDE
+//               </Text>
+
+//               <View className="flex-row flex-wrap gap-2">
+//                 {dish.ingredients.map((item, index) => (
+//                   <View
+//                     key={index}
+//                     className="bg-white border border-[#EAE7E1] px-3.5 py-2 rounded-xl shadow-none"
+//                   >
+//                     <Text className="text-[#1E1E1E] text-xs font-medium">
+//                       {item}
+//                     </Text>
+//                   </View>
+//                 ))}
+//               </View>
+//             </View>
+
+//             {/* ================= ALLERGEN INFORMATION ================= */}
+//             <View className="mb-6">
+//               <Text className="text-[10px] font-bold text-gray-500 tracking-widest uppercase mb-2">
+//                 ALLERGEN INFORMATION
+//               </Text>
+
+//               <Text className="text-gray-500 text-xs leading-5">
+//                 {dish.allergens.length > 0 ? dish.allergens.join(", ") : "None"}
+//               </Text>
+//             </View>
+
+//             {/* ================= 3. FOOTER ACTIONS ================= */}
+//             <View className="flex-row items-center gap-3">
+//               {/* Counter Stepper */}
+//               <View className="flex-row items-center justify-between bg-white border border-[#EAE7E1] rounded-2xl px-3 py-3 w-28">
+//                 <Pressable onPress={handleDecrease} hitSlop={8}>
+//                   <AntDesign name="minus" size={14} color="#7A7A7A" />
+//                 </Pressable>
+//                 <Text className="text-[#1E1E1E] font-bold text-sm">
+//                   {quantity}
+//                 </Text>
+//                 <Pressable onPress={handleIncrease} hitSlop={8}>
+//                   <AntDesign name="plus" size={14} color="#7A7A7A" />
+//                 </Pressable>
+//               </View>
+
+//               {/* Add to Bag Button */}
+//               <Pressable
+//                 onPress={() => console.log(`Added ${quantity} to bag`)}
+//                 className="flex-1 bg-[#C45A34] rounded-2xl py-3.5 items-center justify-center active:opacity-90 shadow-sm shadow-[#C45A34]/30"
+//               >
+//                 <Text className="text-white font-bold text-sm tracking-wide">
+//                   Add to bag · ${totalPrice}
+//                 </Text>
+//               </Pressable>
+//             </View>
+//           </View>
+//         </ScrollView>
+//       </View>
+//     </View>
+//   );
+// };
+
+// export default MenuDetails;
+
+import { MENU_ITEMS, MenuItem } from "@/utils/menu-data";
 import { AntDesign, Feather, Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
-import { LinearGradient } from "expo-linear-gradient";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { FC, useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import {
-  SafeAreaView,
-  useSafeAreaInsets,
-} from "react-native-safe-area-context"; 
+import { Dimensions, Pressable, ScrollView, Text, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useWishlistStore } from "../../../store/store";
 
-interface Props {}
+const { height: SCREEN_HEIGHT } = Dimensions.get("window");
+// Half-screen card (adjust multiplier between 0.50 and 0.60 to taste)
+const MODAL_HEIGHT = SCREEN_HEIGHT * 0.75;
 
-const MenuDetails: FC<Props> = (props) => {
+const MenuDetails: FC = () => {
   const { id } = useLocalSearchParams<{ id: string }>();
-  const [quantity, setQuantity] = useState(1);
   const router = useRouter();
-  const insets = useSafeAreaInsets(); // Dynamically gets safe space for status bar & notch
+  const insets = useSafeAreaInsets();
+  const [quantity, setQuantity] = useState(1);
+
+  const toggleWishlist = useWishlistStore((state: any) => state.toggleWishlist);
   const dish = MENU_ITEMS.find((m) => m.id === id);
+  const isSaved = useWishlistStore((state: any) =>
+    state.wishlist.some((item: MenuItem) => item.id === dish?.id),
+  );
 
   const handleDecrease = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
   const handleIncrease = () => setQuantity((prev) => prev + 1);
 
   const totalPrice = ((dish?.price ?? 0) * quantity).toFixed(2);
 
+  if (!dish) {
+    return (
+      <View className="flex-1 bg-[#FBF9F5] items-center justify-center">
+        <Text className="text-gray-500 font-serif">Dish not found</Text>
+      </View>
+    );
+  }
+
   return (
-    <SafeAreaView>
-      <View className="relative w-full h-[360px] bg-[#09090B]">
-        {/* 1. Main Background Dish Image */}
-        <Image
-          source={dish?.imageUrl}
-          contentFit="cover"
-          style={StyleSheet.absoluteFill}
-        />
+    <View className="flex-1 bg-[#2C2623]/40 justify-end">
+      {/* 1. Backdrop Touch Area: tap above the modal to dismiss */}
+      <Pressable className="flex-1" onPress={() => router.back()} />
 
-        {/* 2. Gradient Overlay: Fades the bottom into the page background color */}
-        <LinearGradient
-          colors={["transparent", "rgba(9, 9, 11, 0.4)", "#09090B"]}
-          locations={[0.4, 0.75, 1.0]}
-          style={StyleSheet.absoluteFill}
-        />
-
-        {/* 3. Floating Action Buttons (Top Bar) */}
-        <View
-          style={{ paddingTop: insets.top + 8 }}
-          className="absolute top-0 left-0 right-0 px-4 flex-row justify-between items-center z-10"
+      {/* 2. Half-Screen Sheet Container */}
+      <View
+        style={{
+          height: MODAL_HEIGHT,
+          paddingBottom: Math.max(insets.bottom, 16),
+        }}
+        className="w-full bg-[#FCFBF8] rounded-t-[36px] overflow-hidden shadow-2xl"
+      >
+        {/* ================= SCROLLABLE CONTENT AREA ================= */}
+        <ScrollView
+          className="flex-1"
+          showsVerticalScrollIndicator={false}
+          bounces={true}
+          contentContainerStyle={{ paddingBottom: 16 }}
         >
-          {/* Back Button */}
-          <Pressable
-            onPress={() => router.back()}
-            className="w-10 h-10 rounded-full bg-black/40 items-center justify-center border border-white/10"
-          >
-            <AntDesign name="left" size={18} color="#FFFFFF" />
-          </Pressable>
-
-          {/* Favorite Button */}
-          <Pressable
-            onPress={() => console.log("Toggle save")}
-            className="w-10 h-10 rounded-full bg-black/40 items-center justify-center border border-white/10"
-          >
-            <Ionicons
-              name={dish?.isSaved ? "heart" : "heart-outline"}
-              size={20}
-              color={dish?.isSaved ? "#EF4444" : "#FFFFFF"}
+          {/* Dish Image */}
+          <View className="relative w-full h-52 bg-[#EFECE6]">
+            <Image
+              source={{ uri: dish.imageUrl }}
+              className="w-full h-full"
+              contentFit="cover"
+              style={{ width: "100%", height: "100%" }}
+              transition={200}
             />
-          </Pressable>
-        </View>
 
-        {/* 4. Bottom Titles directly over the faded image area */}
-        <View className="absolute bottom-4 left-0 right-0 px-5 z-10">
-          <Text className="text-emerald-400 text-xs font-semibold tracking-wider uppercase mb-1">
-            {dish?.name || "Vegetarian"}
-          </Text>
-          <Text className="text-white text-2xl font-bold">
-            {dish?.name || "Wild Mushroom Risotto"}
-          </Text>
-        </View>
-      </View>
-
-      <View className="px-5 my-4">
-        <View className="w-full bg-[#18181B] border border-[#27272A]/70 rounded-2xl py-3 px-4 flex-row items-center justify-between">
-          {/* 1. Rating */}
-          <View className="flex-1 items-center">
-            <View className="flex-row items-center gap-1.5 mb-1">
-              <AntDesign name="star" color="#F59E0B" size={15} />
-              <Text className="text-white font-bold text-sm">
-                {dish?.rating ? Number(dish.rating).toFixed(1) : "4.6"}
-              </Text>
-            </View>
-            <Text className="text-gray-400 text-[10px] uppercase font-semibold tracking-wider">
-              Rating
-            </Text>
-          </View>
-
-          {/* Divider */}
-          <View className="w-[1px] h-7 bg-[#27272A]" />
-
-          {/* 2. Prep Time */}
-          <View className="flex-1 items-center">
-            <View className="flex-row items-center gap-1.5 mb-1">
-              <Feather name="clock" color="#9CA3AF" size={14} />
-              <Text className="text-white font-bold text-sm">
-                {dish?.prepTime || "12 min"}
-              </Text>
-            </View>
-            <Text className="text-gray-400 text-[10px] uppercase font-semibold tracking-wider">
-              Prep Time
-            </Text>
-          </View>
-
-          {/* Divider */}
-          <View className="w-[1px] h-7 bg-[#27272A]" />
-
-          {/* 3. Calories */}
-          <View className="flex-1 items-center">
-            <View className="flex-row items-center gap-1.5 mb-1">
-              <Ionicons name="flame-outline" color="#F97316" size={15} />
-              <Text className="text-white font-bold text-sm">
-                {dish?.calories || "410"}
-              </Text>
-            </View>
-            <Text className="text-gray-400 text-[10px] uppercase font-semibold tracking-wider">
-              Calories
-            </Text>
-          </View>
-        </View>
-      </View>
-
-      {/* 1. Description */}
-      <View className="px-5 mb-6">
-        <Text className="text-gray-300 italic text-[13px] leading-5 tracking-normal">
-          {dish?.description}
-        </Text>
-      </View>
-
-      {/* 2. Ingredients Section */}
-      <View className="px-5 mb-6">
-        <Text className="text-white text-[11px] font-semibold tracking-widest uppercase mb-3">
-          Ingredients
-        </Text>
-
-        <View className="flex-row flex-wrap gap-2">
-          {dish?.ingredients.map((item) => (
-            <View
-              key={item}
-              className="h-10 px-3 rounded-xl bg-[#18181B] border border-[#27272A] items-center justify-center min-w-[30%] flex-grow"
-            >
-              <Text
-                numberOfLines={1}
-                className="text-gray-300 text-xs font-medium text-center"
+            {/* Floating Back & Favorite buttons */}
+            <View className="absolute top-4 left-0 right-0 px-4 flex-row justify-between items-center z-10">
+              <Pressable
+                onPress={() => router.back()}
+                hitSlop={8}
+                className="w-9 h-9 rounded-full bg-white items-center justify-center shadow-sm active:opacity-80"
               >
-                {item}
-              </Text>
-            </View>
-          ))}
-        </View>
-      </View> 
+                <AntDesign name="left" size={15} color="#1E1E1E" />
+              </Pressable>
 
-      {/* allegens */}
-      <View className="px-5 mb-6">
-        <Text className="text-white text-[11px] font-semibold tracking-widest uppercase mb-3">
-          Allegens
-        </Text>
-
-        <View className="flex-row flex-wrap gap-2">
-          {dish?.allergens.map((item) => (
-            <View
-              key={item}
-              className="h-10 px-3 rounded-xl bg-[#18181B] border border-[#27272A] items-center justify-center min-w-[30%] flex-grow"
-            >
-              <Text
-                numberOfLines={1}
-                className="text-[#F59E0B] text-xs font-medium text-center"
+              <Pressable
+                onPress={() => toggleWishlist(dish)}
+                hitSlop={8}
+                className="w-9 h-9 rounded-full bg-white items-center justify-center shadow-sm active:opacity-80"
               >
-                {item}
+                <Ionicons
+                  name={isSaved ? "heart" : "heart-outline"}
+                  size={17}
+                  color={isSaved ? "#C45A34" : "#1E1E1E"}
+                />
+              </Pressable>
+            </View>
+          </View>
+
+          {/* Details Body */}
+          <View className="px-6 pt-4">
+            {/* Tag */}
+            {dish.tag && (
+              <Text className="text-[#C45A34] text-[12px] font-medium mb-1">
+                {dish.tag.charAt(0).toUpperCase() +
+                  dish.tag.slice(1).toLowerCase()}
+              </Text>
+            )}
+
+            {/* Title & Price Row */}
+            <View className="flex-row items-baseline justify-between mb-4">
+              <Text
+                className="text-[#1E1E1E] text-2xl font-bold flex-1 mr-3"
+                style={{ fontFamily: "serif" }}
+              >
+                {dish.name}
+              </Text>
+              <Text className="text-[#C45A34] text-xl font-bold">
+                ${dish.price.toFixed(2)}
               </Text>
             </View>
-          ))}
+
+            {/* Stats Card */}
+            <View className="w-full bg-[#FFFFFF] border border-[#EFECE6] rounded-2xl py-3 px-4 flex-row items-center justify-between mb-4 shadow-sm">
+              <View className="flex-1 items-center">
+                <View className="flex-row items-center gap-1 mb-1">
+                  <AntDesign name="star" color="#1E1E1E" size={12} />
+                  <Text className="text-[#1E1E1E] font-bold text-xs">
+                    {dish.rating.toFixed(1)}
+                  </Text>
+                </View>
+                <Text className="text-gray-400 text-[9px] uppercase font-semibold tracking-wider">
+                  RATING
+                </Text>
+              </View>
+
+              <View className="w-[1px] h-6 bg-[#EFECE6]" />
+
+              <View className="flex-1 items-center">
+                <View className="flex-row items-center gap-1 mb-1">
+                  <Feather name="clock" color="#1E1E1E" size={12} />
+                  <Text className="text-[#1E1E1E] font-bold text-xs">
+                    {dish.prepTime}
+                  </Text>
+                </View>
+                <Text className="text-gray-400 text-[9px] uppercase font-semibold tracking-wider">
+                  READY IN
+                </Text>
+              </View>
+
+              <View className="w-[1px] h-6 bg-[#EFECE6]" />
+
+              <View className="flex-1 items-center">
+                <Text className="text-[#1E1E1E] font-bold text-xs mb-1">
+                  {dish.calories.replace(/[^0-9]/g, "")}
+                </Text>
+                <Text className="text-gray-400 text-[9px] uppercase font-semibold tracking-wider">
+                  CALORIES
+                </Text>
+              </View>
+            </View>
+
+            {/* Description */}
+            <Text className="text-gray-500 italic text-[13px] leading-5 mb-5">
+              {dish.description} Prepared to order with vibrant seasonal produce
+              and our kitchen's signature dressing.
+            </Text>
+
+            {/* What's Inside */}
+            <View className="mb-4">
+              <Text className="text-[10px] font-bold text-gray-500 tracking-widest uppercase mb-2">
+                WHAT'S INSIDE
+              </Text>
+              <View className="flex-row flex-wrap gap-2">
+                {dish.ingredients.map((item, index) => (
+                  <View
+                    key={index}
+                    className="bg-white border border-[#EAE7E1] px-3.5 py-1.5 rounded-xl"
+                  >
+                    <Text className="text-[#1E1E1E] text-xs font-medium">
+                      {item}
+                    </Text>
+                  </View>
+                ))}
+              </View>
+            </View>
+
+            {/* Allergen Information */}
+            <View className="mb-2">
+              <Text className="text-[10px] font-bold text-gray-500 tracking-widest uppercase mb-1.5">
+                ALLERGEN INFORMATION
+              </Text>
+              <Text className="text-gray-500 text-xs leading-5">
+                {dish.allergens.length > 0 ? dish.allergens.join(", ") : "None"}
+              </Text>
+            </View>
+          </View>
+        </ScrollView>
+
+        {/* ================= FIXED BOTTOM ACTION BAR ================= */}
+        <View className="px-6 pt-3 bg-[#FCFBF8] border-t border-[#EFECE6] flex-row items-center gap-3">
+          {/* Stepper */}
+          <View className="flex-row items-center justify-between bg-white border border-[#EAE7E1] rounded-2xl px-3 py-3 w-28">
+            <Pressable onPress={handleDecrease} hitSlop={8}>
+              <AntDesign name="minus" size={14} color="#7A7A7A" />
+            </Pressable>
+            <Text className="text-[#1E1E1E] font-bold text-sm">{quantity}</Text>
+            <Pressable onPress={handleIncrease} hitSlop={8}>
+              <AntDesign name="plus" size={14} color="#7A7A7A" />
+            </Pressable>
+          </View>
+
+          {/* Add to Bag Button */}
+          <Pressable
+            onPress={() => console.log(`Added ${quantity} to bag`)}
+            className="flex-1 bg-[#C45A34] rounded-2xl py-3.5 items-center justify-center active:opacity-90 shadow-sm shadow-[#C45A34]/30"
+          >
+            <Text className="text-white font-bold text-sm tracking-wide">
+              Add to bag · ${totalPrice}
+            </Text>
+          </Pressable>
         </View>
       </View>
-
-      {/* Container anchored at the bottom */}
-      <View className="px-5 pt-3 pb-6 bg-[#09090B] border-t border-[#27272A]/50 flex-row items-center gap-3">
-        {/* 1. Stepper / Counter Pill */}
-        <View className="flex-row items-center bg-[#18181B] border border-[#27272A] rounded-full px-4 py-3.5 gap-4">
-          <Pressable onPress={handleDecrease}>
-            <AntDesign name="minus" color="#fff" size={15} />
-          </Pressable>
-
-          {/* Counter Text (e.g., text-white font-bold) */}
-          <Text className="text-white ">{quantity}</Text>
-
-          <Pressable onPress={handleIncrease}>
-            <AntDesign name="plus" color="#fff" size={15} />
-          </Pressable>
-        </View>
-
-        {/* 2. Main Action Button */}
-        <Pressable
-          onPress={() => console.log(`Ordered ${quantity} items`)}
-          className="flex-1 bg-[#E59E38] rounded-full py-4 items-center justify-center active:opacity-90"
-        >
-          <Text className="text-black font-bold text-sm tracking-wide">
-            Add to order · ${totalPrice}
-          </Text>
-        </Pressable> 
-      </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
