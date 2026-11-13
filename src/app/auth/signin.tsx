@@ -49,8 +49,6 @@ const SignIn: FC<Props> = (props) => {
         {/* ================= TOP HERO SECTION ================= */}
         <View style={styles.heroContainer}>
           <ImageBackground
-            // Replace with your local asset: require('@/assets/images/food-hero.jpg')
-            // or an external URL:
             source={{
               uri: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=80",
             }}
