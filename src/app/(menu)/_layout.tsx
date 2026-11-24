@@ -1,12 +1,16 @@
 import AppHeader from "@/components/AppHeader";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Ionicons } from "@react-native-vector-icons/ionicons";
-import { Tabs } from "expo-router";
+import { router, Tabs } from "expo-router";
 import { Platform } from "react-native";
 import { useWishlistStore } from "../../../store/store";
 
 export default function TabLayout() {
   const savedCount = useWishlistStore((state: any) => state.wishlist.length);
+
+  const handleCartPress = () => {
+    router.push('/cart')
+  }
   return (
     <Tabs
       screenOptions={{
@@ -16,7 +20,7 @@ export default function TabLayout() {
         headerShown: true,
         sceneStyle: { backgroundColor: "#FBF9F5" },
 
-        header: () => <AppHeader />,
+        header: () => <AppHeader  onCartPress={handleCartPress}/>,
         // 2. Attach your custom header globally for ALL student tabs
         tabBarStyle: {
           backgroundColor: "#ffffff",
