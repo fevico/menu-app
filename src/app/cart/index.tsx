@@ -296,4 +296,4 @@ const Cart: FC = () => {
   );
 };
 
-export default Cart;
+export default Cart; 
